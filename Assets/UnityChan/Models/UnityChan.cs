@@ -10,7 +10,6 @@ public class UnityChan : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        target = new Vector3(0f, 0f, -5f);
         animator = GetComponent<Animator>();
     }
 
@@ -27,7 +26,19 @@ public class UnityChan : MonoBehaviour
         else
         {
             rigidbody.velocity = diff.normalized * speed;
-            animator.SetFloat("Speed", 0.2f);
+            animator.SetFloat("Speed", 5f);
         }
+    }
+
+    public void SetPosition(float power)
+    {
+        power = Mathf.Clamp(power, 0.2f, 1.0f);
+        target = Vector3.left * 10f * power;
+    }
+
+    public void Run()
+    {
+        target = Vector3.zero;
+        animator.SetFloat("Speed", 5f);
     }
 }
