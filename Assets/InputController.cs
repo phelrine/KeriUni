@@ -24,6 +24,7 @@ public class InputController : MonoBehaviour {
         {
             var pos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             var diff = start - pos;
+
             var deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             arrow.SetRotation(deg);
             unitychan.SetPosition(diff.magnitude);
@@ -31,7 +32,9 @@ public class InputController : MonoBehaviour {
 
         if (Input.GetMouseButtonUp(0))
         {
-            unitychan.Run();
+            var pos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            var diff = start - pos;
+            unitychan.Run(diff);
         }
 	}
 }
